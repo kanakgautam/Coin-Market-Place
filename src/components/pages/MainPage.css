@@ -1,0 +1,80 @@
+
+.main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 64px;
+  font-family: 'Montserrat', sans-serif;
+  
+}
+
+.coin-table-heading{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  border-bottom: 1px solid #d7d7d7;
+  border-top: 1px solid #d7d7d7;
+  height:60px;
+  font-size: 18px;
+}
+
+.coin-heading{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width:25%;
+  font-size: 18px;
+  
+}
+
+.coin-heading-cell-index{
+  width:25%
+}
+
+.coin-heading-cell-name{
+  width:75%;
+  text-align: center;
+}
+
+
+.coin-data-heading{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 65%;
+}
+
+.coin-data-heading-cell-price{
+  width: 10%;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.coin-data-heading-cell-24h{
+  width: 10%;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.coin-data-heading-cell-24h-volume{
+  width: 15%;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.coin-data-heading-cell-mkt-cap{
+  width: 15%;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.coin-data-heading-cell-circulating-supply{
+  width: 20%;
+  margin-right: 20px;
+  text-align: center;
+}
+
+

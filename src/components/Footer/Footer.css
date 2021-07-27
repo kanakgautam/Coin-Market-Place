@@ -1,0 +1,14 @@
+.btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    min-width:500px;
+    margin: 30px;
+}
+
+.btn{
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+}
