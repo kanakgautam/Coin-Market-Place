@@ -4,7 +4,6 @@ import MainPage from './components/pages/MainPage'
 import CoinPage from './components/pages/CoinPage'
 import './App.css'
 
-
 function App() {
 
     return (

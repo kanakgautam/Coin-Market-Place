@@ -1,0 +1,36 @@
+import React, { useState } from 'react'
+import MenuItems from './MenuItems'
+import {useSelector } from 'react-redux';
+import './Dropdown.css'
+
+function Dropdown(props) {
+    const {changeCurrency} = props;
+    const [click, setClick] = useState(false);
+    const theme = useSelector(state=>state.theme);
+    const handleClick = () => { setClick(!click) };
+    const [val,setVal]= useState('usd');
+
+    console.log(click);
+
+    return (
+        <div>
+            <button className='dropdown-btn' onClick={handleClick}>{val}</button>
+            <ul onClick={handleClick} className={!click ? 'dropdown-menu clicked' : theme ?'dropdown-menu-night':'dropdown-menu-day'}>
+                {MenuItems.map((item, index) => {
+                    return (
+                        <li className='dropdown-menu-list' onClick = {()=>{
+                            changeCurrency(item.title);
+                            setVal(item.title);
+                            console.log(item.title);
+                            handleClick();
+                        }}>
+                            {item.title}
+                        </li>
+                    )
+                })}
+            </ul>
+        </div>
+    )
+}
+
+export default Dropdown
