@@ -7,6 +7,8 @@ import {useSelector,useDispatch} from 'react-redux';
 import {toggle} from '../../actions'
 import './MainPage.css'
 import Dropdown from './Dropdown'
+import Spinner from 'react-bootstrap/Spinner';
+import Loader from './Loader'
 
 function App() {
 
@@ -17,32 +19,26 @@ function App() {
 
     const [coins, setCoins] = useState([])
     const [search, setSearch] = useState('');
-    const [page, setPage] = useState(1);
+    const page = useSelector(state=>state.page);
     const [curreny,setCurrency]= useState('usd');
+    const [sign,setSign]=useState('$')
     
 
-    const changeCurrency =(item) =>{
+    const changeCurrency =(item,sign) =>{
         setCurrency(item);
         console.log(item);
+        setSign(sign);
     }
 
 
     useEffect(() => {
-        axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency='+curreny+'&order=market_cap_desc&per_page=50&page=' + page + '&sparkline=false')
+        axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency='+curreny+'&order=market_cap_desc&per_page=20&page=' + page + '&sparkline=false')
             .then(res => {
                 setCoins(res.data)
             })
             .catch(error => console.log(error));
     }, [coins,page,curreny])
 
-
-
-    const changePage = (num) => {
-        console.log('hi');
-        console.log(num);
-        setPage(Math.max(1, page + num));
-        console.log(page);
-    }
 
 
 
@@ -56,7 +52,6 @@ function App() {
         dispatch(toggle());
     }
 
-    console.log(theme);
 
 
     const filteredCoins = coins.filter(coin =>
@@ -70,7 +65,7 @@ function App() {
 
         <div className={theme ? 'main-page-night':'main-page-day'}>
 
-        <div className='top-section'>
+        {  coins.length>0 &&  <div className='top-section'>
             <div className='filter-section'>
             <Header handleChange={handleChange} />
             <Dropdown changeCurrency={changeCurrency}/>
@@ -80,12 +75,12 @@ function App() {
                 <button className={theme ? 'top-section-btn':'inactive'} onClick={themeChange}><i class="fas fa-sun"></i></button>
                 <button className={!theme ? 'top-section-btn':'inactive'} onClick={themeChange}><i class="fas fa-moon"></i></button>
             </div>
-        </div>
+        </div>}
             
 
 
 
-            <div className='coin-table-heading'>
+            {coins.length>0 &&<div className='coin-table-heading'>
 
 
                 <div className='coin-heading'>
@@ -101,17 +96,13 @@ function App() {
                     <p className='coin-data-heading-cell-24h-volume'>24h Volume</p>
                     <p className='coin-data-heading-cell-mkt-cap'>Mkt Cap</p>
                     <p className='coin-data-heading-cell-total-volume'>Total Volume</p>
-                    <p className='coin-data-heading-cell-circulating-supply'>Last 7 days</p>
+                    <p className='coin-data-heading-cell-circulating-supply'>Last 24h</p>
                 </div>
 
 
-            </div>
+            </div>}
 
-            {coins.length===0 &&
-                <div>
-                    <h1>Fetching Data...</h1>
-                </div>
-            }
+            
 
             {coins.length>0 && filteredCoins.map(coin => {
                 return (
@@ -127,13 +118,18 @@ function App() {
                         marketcap={coin.market_cap}
                         circulatingSupply={coin.circulating_supply}
                         total_volume={coin.total_volume}
+                        sign={sign}
                     />
                 )
             })}
 
 
 
-            {coins.length>0 && <Footer changePage={changePage} page={page}/>}
+            {coins.length>0 && <Footer />}
+            {coins.length===0 && <Loader/>}
+            
+
+
         </div>
     )
 }

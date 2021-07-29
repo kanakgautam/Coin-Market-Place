@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import callAPI from "./utils";
 import Plot from 'react-plotly.js'
 
-function Graph(props) {
+function SmallGraph(props) {
     const {id,height,width,size,color} = props;
 	const [isLoading, setIsLoading] = useState(true);
 	const [latestPrice, setLatestPrice] = useState(0);
@@ -20,7 +20,7 @@ function Graph(props) {
 
 	const fetchData = async () => {
 		let data = { index: [], price: []};
-		let result = await callAPI('https://api.coingecko.com/api/v3/coins/'+id+'/market_chart?vs_currency=usd&days=7d&interval=1d');
+		let result = await callAPI('https://api.coingecko.com/api/v3/coins/'+id+'/market_chart?vs_currency=usd&days=24h&interval=1h');
 		for (const item of result.prices) {
 			data.index.push(new Date(item[0]));
 			data.price.push(item[1]);
@@ -48,4 +48,4 @@ function Graph(props) {
 	);
 }
 
-export default Graph;
+export default SmallGraph;

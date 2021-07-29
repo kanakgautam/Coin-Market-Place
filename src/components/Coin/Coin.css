@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height:300px;
+    height:100px;
     align-items: center;
     border-bottom: 1px solid #d7d7d7;
     width:100%;
@@ -49,7 +49,7 @@
 .coin-data{
     display: flex;
     text-align: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
     min-width: 70%;
     font-size: 14px;
@@ -57,7 +57,7 @@
 
 .coin-price{
     width: 8%;
-    margin-right: 20px;
+    margin: 30px;
 }
 
 .coin-price-change {
@@ -66,22 +66,24 @@
 }
 
 .coin-total-volume{
-    width:12%;
-    margin-right: 20px;
+    width:14%;
+    margin: 20px;
 }
 
-.coin-circulating-supply{
+.coin-graph{
     width:18%;
+    position: absolute;
+    right: 50px;
 }
 
 .coin-marketcap{
-    width: 12%;
-    margin-right: 20px;
+    width: 14%;
+    margin: 20px;
 }
 
 .coin-volume{
     width:12%;
-    margin-right: 20px;
+    margin: 15px;
 }
   
 .red {

@@ -4,6 +4,7 @@ import axios from 'axios'
 import './CoinPage.css'
 import {useSelector } from 'react-redux';
 import Graph from './Graph'
+import Loader from './Loader';
 
 
 
@@ -36,6 +37,7 @@ function CoinPage() {
 
     return (
         <div className={!theme ? 'coin-page-day':'coin-page-night'}>
+            {!coin.market_data && <Loader />}
             {coin.market_data &&
                 <div className='coin-page-wrapper'>
                     <div className='coin-info'>
@@ -94,7 +96,7 @@ function CoinPage() {
                     <div className='coin-market-stats'>
                     <div>
                     <div className='coin-market-graph'>
-                                <Graph  id={id} height={600} width={800} />
+                                <Graph  id={id} height={600} width={800} size={18}  color={coin.market_data.price_change_percentage_7d > 0 ?'#11d811':'red'}/>
                     </div>
                     </div>
                         <div className='coin-market-stats-wrapper'>

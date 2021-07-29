@@ -1,23 +1,26 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { decrement, increment } from '../../actions';
 import './Footer.css'
-function Footer(props) {
+function Footer() {
 
-    const {changePage,page}=props;
 
+    const page = useSelector(state=>state.page);
+    const dispatch = useDispatch();
     return (
         <div className='btn-container'>
             <button className='btn' onClick={()=>{
-               changePage(-5);
+               dispatch(decrement(5));
            }}>&lt;&lt; prev</button> 
            <button className='btn' onClick={()=>{
-               changePage(-1);
+               dispatch(decrement(1));
            }}>&lt; prev</button> 
            <p>....  {page}  .....</p>
            <button className='btn' onClick={()=>{
-               changePage(1);
+               dispatch(increment(1));
            }}>next &gt;</button>
            <button className='btn' onClick={()=>{
-               changePage(5);
+               dispatch(increment(5));
            }}>next &gt;&gt;</button>
         </div>
     )

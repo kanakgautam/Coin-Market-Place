@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import {Link} from  'react-router-dom'
 import './Coin.css'
 import axios from 'axios'
-import Graph from '../pages/Graph';
+import SmallGraph from '../pages/SmallGraph'
 
 
 export default function Coin(props) {
 
-    const { name, image, symbol, price, volume, priceChange_24,marketcap,marketcapRank,circulatingSupply,total_volume,id} = props;
+    const { name, image, symbol, price, volume, priceChange_24,marketcap,marketcapRank,sign,total_volume,id} = props;
     // const [coinData,setCoinData]=useState({});
     // useEffect( () => {
     //      axios.get('https://api.coingecko.com/api/v3/coins/'+id+'/market_chart?vs_currency=usd&days=7d')
@@ -42,7 +42,7 @@ export default function Coin(props) {
 
 
                 <div className='coin-data'>
-                    <p className={`coin-price ${color}` }>{price.toLocaleString()}</p>
+                    <p className={`coin-price ${color}` }> {sign} {price.toLocaleString()}</p>
                     {
                         priceChange_24 < 0 ? 
                         (<p className='coin-price-change red'>{priceChange_24}%</p>) 
@@ -50,13 +50,13 @@ export default function Coin(props) {
                     }
                     <p className='coin-volume'>{volume.toLocaleString()}</p>
                     <p className='coin-marketcap'>
-                        {marketcap.toLocaleString()}
+                      {sign} {marketcap.toLocaleString()}
                     </p>
                     <p className='coin-total-volume'>
-                        {total_volume.toLocaleString()}
+                        {sign} {total_volume.toLocaleString()}
                     </p>
-                    <p className='coin-circulating-supply'>
-                        <Graph id={id} height={200} width={200}/>
+                    <p className='coin-graph'>
+                        <SmallGraph id={id} height={250} width={250} size={1} color={priceChange_24>0 ?'#11d811':'red'}/>
                     </p>
                 </div>
 

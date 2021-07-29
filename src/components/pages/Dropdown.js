@@ -10,7 +10,6 @@ function Dropdown(props) {
     const handleClick = () => { setClick(!click) };
     const [val,setVal]= useState('usd');
 
-    console.log(click);
 
     return (
         <div>
@@ -19,7 +18,7 @@ function Dropdown(props) {
                 {MenuItems.map((item, index) => {
                     return (
                         <li className='dropdown-menu-list' onClick = {()=>{
-                            changeCurrency(item.title);
+                            changeCurrency(item.title,item.symbol);
                             setVal(item.title);
                             console.log(item.title);
                             handleClick();
