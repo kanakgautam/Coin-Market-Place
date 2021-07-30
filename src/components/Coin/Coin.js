@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import {Link} from  'react-router-dom'
 import './Coin.css'
 import axios from 'axios'
-import SmallGraph from '../pages/SmallGraph'
+import SmallGraph from '../Graphs/SmallGraph'
 
 
 export default function Coin(props) {

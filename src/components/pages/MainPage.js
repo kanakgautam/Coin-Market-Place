@@ -6,7 +6,7 @@ import Header from '../Header/Header'
 import {useSelector,useDispatch} from 'react-redux';
 import {toggle} from '../../actions'
 import './MainPage.css'
-import Dropdown from './Dropdown'
+import Dropdown from '../Dropdown/Dropdown'
 import Loader from '../Loader/Loader'
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
                 setCoins(res.data)
             })
             .catch(error => console.log(error));
-    }, [coins,page,curreny])
+    }, [page,curreny])
 
 
 

@@ -29,7 +29,7 @@ function Navbar() {
                     </Link>
                 </li>
                 <li className='nav-item'>
-                    <Link to='/' className='nav-links'>
+                    <Link to='/news' className='nav-links'>
                         News
                     </Link>
                 </li>

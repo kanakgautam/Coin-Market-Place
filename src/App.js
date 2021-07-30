@@ -4,6 +4,7 @@ import MainPage from './components/pages/MainPage'
 import CoinPage from './components/pages/CoinPage'
 import Navbar from './components/Navbar/Navbar'
 import './App.css'
+import News from './components/pages/News'
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
             <Switch>
             <Route path='/' exact component={MainPage} />
             <Route path='/coinPage' exact component={CoinPage} />
+            <Route path='/news' exact component={News} />
             </Switch>
         </Router>
         

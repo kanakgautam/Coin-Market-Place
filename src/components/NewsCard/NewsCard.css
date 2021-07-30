@@ -1,0 +1,28 @@
+.news-card{
+    background-color: inherit;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 40px;
+    border-bottom: thin solid;
+    min-width: 95%;
+}
+
+.card-heading{
+    margin: 10px 0px;
+    font-size: 20px;
+}
+
+.card-link:hover{
+    color: #14d2eb;
+}
+
+.card-details{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    width: 90%;
+    margin: 10px 0;
+}

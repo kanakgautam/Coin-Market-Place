@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import callAPI from "./utils";
+import callAPI from "../pages/utils";
 import Plot from 'react-plotly.js'
 
 function SmallGraph(props) {

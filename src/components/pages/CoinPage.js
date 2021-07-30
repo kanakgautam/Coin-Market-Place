@@ -3,9 +3,9 @@ import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import './CoinPage.css'
 import {useSelector } from 'react-redux';
-import Graph from './Graph'
+import Graph from '../Graphs/Graph'
 import Loader from '../Loader/Loader';
-import Dropdown from './Dropdown';
+import Dropdown from '../Dropdown/Dropdown';
 
 
 
