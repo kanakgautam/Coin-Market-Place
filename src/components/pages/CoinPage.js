@@ -4,7 +4,8 @@ import axios from 'axios'
 import './CoinPage.css'
 import {useSelector } from 'react-redux';
 import Graph from './Graph'
-import Loader from './Loader';
+import Loader from '../Loader/Loader';
+import Dropdown from './Dropdown';
 
 
 
@@ -17,8 +18,15 @@ function CoinPage() {
     const location = useLocation();
     const { id, image } = location.state;
     const [coin, setCoin] = useState({});
+    const [curr,setCurr]=useState('usd');
+    const [sign,setSign]=useState('$');
     const theme = useSelector(state=>state.theme);
 
+
+    const changeCurr = (item,symbol) =>{
+        setCurr(item);
+        setSign(symbol);
+    }
 
 
 
@@ -45,6 +53,9 @@ function CoinPage() {
                             <div>
                                 <img className='coin-description-img' src={image} />
                                 <p className='coin-description-rank'>Rank {coin.market_data.market_cap_rank}</p>
+                                <div className='coin-description-currency'>
+                                <Dropdown  changeCurrency={changeCurr}/>
+                                </div>
                             </div>
                             <div className='coin-description-name'>
                                 <h1>{coin.name}</h1>
@@ -56,7 +67,7 @@ function CoinPage() {
 
                         <div className='coin-info-price'>
                             <div className='coin-info-price-currency'>
-                                <h1>${coin.market_data.current_price.usd}</h1>
+                                <h1>{sign}{coin.market_data.current_price[curr]}</h1>
                                 {coin.market_data.price_change_percentage_24h > 0 ? (<p className='green'>{coin.market_data.price_change_percentage_24h}%</p>) :
                                     (<p className='red'>{coin.market_data.price_change_percentage_24h}%</p>)
                                 }
@@ -64,10 +75,10 @@ function CoinPage() {
 
                             <div className='coin-info-range'>
                                 <div>
-                                    low24h: {coin.market_data.low_24h.usd}
+                                    low24h: {coin.market_data.low_24h[curr]}
                                 </div>
                                 <div>
-                                    high24h: {coin.market_data.high_24h.usd}
+                                    high24h: {coin.market_data.high_24h[curr]}
                                 </div>
                             </div>
                         </div>
@@ -75,35 +86,35 @@ function CoinPage() {
                     <div className='coin-market-value'>
                         <div className='market-cap box'>
                             <p>Market Cap</p>
-                            <p>${coin.market_data.market_cap.usd.toLocaleString()}</p>
+                            <p>{sign} {coin.market_data.market_cap[curr].toLocaleString()}</p>
                             {coin.market_data.market_cap_change_percentage_24h > 0 ? (<p className='green'>{coin.market_data.market_cap_change_percentage_24h.toLocaleString()}%</p>) :
                                     (<p className='red'>{coin.market_data.market_cap_change_percentage_24h.toLocaleString()}%</p>)
                                 }
                         </div>
                         {coin.market_data.fully_diluted_valuation >0 && <div className='fully-diluted-market-cap box'>
                                 <p>Fully Diluted market cap</p>
-                                <p>${coin.market_data.fully_diluted_valuation.usd.toLocaleString()}</p>
+                                <p>{sign} {coin.market_data.fully_diluted_valuation[curr].toLocaleString()}</p>
                         </div>}
                         {coin.market_data.total_volume && <div className='volume box'>
                                 <p>Volume</p>
-                                <p>${coin.market_data.total_volume.usd.toLocaleString()}</p>
+                                <p>{sign} {coin.market_data.total_volume[curr].toLocaleString()}</p>
                         </div>}
                         {coin.market_data.circulating_supply && <div className='circulating-supply'>
                                 <p>Circulating Supply</p>
-                                <p>${coin.market_data.circulating_supply.toLocaleString()} {coin.symbol}</p>
+                                <p>{sign} {coin.market_data.circulating_supply.toLocaleString()} {coin.symbol}</p>
                         </div>}
                     </div>
                     <div className='coin-market-stats'>
                     <div>
                     <div className='coin-market-graph'>
-                                <Graph  id={id} height={600} width={800} size={18}  color={coin.market_data.price_change_percentage_7d > 0 ?'#11d811':'red'}/>
+                                <Graph  id={id} height={600} width={800} size={18} curr={curr}  color={coin.market_data.price_change_percentage_7d > 0 ?'#11d811':'red'}/>
                     </div>
                     </div>
                         <div className='coin-market-stats-wrapper'>
                             <h1 className='coin-market-stats-heading'>{coin.symbol.toUpperCase()} Price Statistics</h1>
                             <div className='coin-market-stat-row'>
                                 <p>{coin.name}</p>
-                                <p>${coin.market_data.current_price.usd.toLocaleString()}</p>
+                                <p>{sign} {coin.market_data.current_price[curr].toLocaleString()}</p>
                             </div>
                             <div className='coin-market-stat-row'>
                                 <p>Price Change 24h</p>
@@ -111,11 +122,11 @@ function CoinPage() {
                             </div>
                             <div className='coin-market-stat-row'>
                                 <p>24h Low/24h High</p>
-                                <p>${coin.market_data.low_24h.usd} / ${coin.market_data.high_24h.usd}</p>
+                                <p>{sign} {coin.market_data.low_24h[curr]} / ${coin.market_data.high_24h[curr]}</p>
                             </div>
                             <div className='coin-market-stat-row'>
                                 <p>Trading Volume</p>
-                                <p>{coin.market_data.total_volume.usd.toLocaleString()}</p>
+                                <p>{sign}{coin.market_data.total_volume[curr].toLocaleString()}</p>
                             </div>
                             <div className='coin-market-stat-row'>
                                 <p>Public Interest Score</p>

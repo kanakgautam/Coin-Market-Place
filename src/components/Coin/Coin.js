@@ -21,11 +21,11 @@ export default function Coin(props) {
 
     const priceRef = useRef(price);
     const color = priceRef.current>price ? "flash-red": priceRef.current<price ? "flash-green":"";
-    // console.log(color);
+    console.log(color);
 
     return (
         <div className='coin-container'>
-         {  <div className='coin-row'>
+         {  <div className={`coin-row ${color}`}>
 
 
 

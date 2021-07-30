@@ -103,17 +103,17 @@
 }
 @keyframes flash-green{
     from{
-        color: green;
+        background-color: green;
     }
     to{
-        color: inherit;
+        background-color: inherit;
     }
 }
 @keyframes flash-red{
     from{
-        color: red;
+        background-color: red;
     }
     to{
-        color: inherit;
+        background-color: inherit;
     }
 }

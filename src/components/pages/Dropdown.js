@@ -4,7 +4,7 @@ import {useSelector } from 'react-redux';
 import './Dropdown.css'
 
 function Dropdown(props) {
-    const {changeCurrency} = props;
+    const {changeCurrency,height} = props;
     const [click, setClick] = useState(false);
     const theme = useSelector(state=>state.theme);
     const handleClick = () => { setClick(!click) };

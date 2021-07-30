@@ -7,8 +7,7 @@ import {useSelector,useDispatch} from 'react-redux';
 import {toggle} from '../../actions'
 import './MainPage.css'
 import Dropdown from './Dropdown'
-import Spinner from 'react-bootstrap/Spinner';
-import Loader from './Loader'
+import Loader from '../Loader/Loader'
 
 function App() {
 
@@ -68,7 +67,9 @@ function App() {
         {  coins.length>0 &&  <div className='top-section'>
             <div className='filter-section'>
             <Header handleChange={handleChange} />
-            <Dropdown changeCurrency={changeCurrency}/>
+            <div className='dropdown-menu'>
+                 <Dropdown changeCurrency={changeCurrency} height={240}/>
+            </div>
             </div>
             
             <div className='theme-section'>
