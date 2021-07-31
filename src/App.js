@@ -5,6 +5,7 @@ import CoinPage from './components/pages/CoinPage'
 import Navbar from './components/Navbar/Navbar'
 import './App.css'
 import News from './components/pages/News'
+import Exchange from './components/pages/Exchange'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
             <Route path='/' exact component={MainPage} />
             <Route path='/coinPage' exact component={CoinPage} />
             <Route path='/news' exact component={News} />
+            <Route path ='/exchange' exact component={Exchange}/>
             </Switch>
         </Router>
         

@@ -3,26 +3,45 @@
     color: inherit;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    padding: 20px 40px;
-    border-bottom: thin solid;
-    min-width: 95%;
+    padding: 20px 60px;
+    border: thin solid;
+    width: 60%;
+    margin: 20px;
+    border-radius: 10px;
 }
 
 .card-heading{
     margin: 10px 0px;
-    font-size: 20px;
+    font-size: 22px;
 }
 
-.card-link:hover{
+.card-heading:hover{
     color: #14d2eb;
+}
+
+.card-image{
+    height: 200px;
+    width: 300px;
+}
+
+.card-para{
+    margin: 20px;
+    padding:10px;
+    line-height: 30px;
 }
 
 .card-details{
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content:flex-start;
     width: 90%;
     margin: 10px 0;
+}
+
+.card-source{
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
 }

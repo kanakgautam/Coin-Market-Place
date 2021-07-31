@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
-    "chart.js": "^3.5.0",
+    "newsapi": "^2.4.1",
     "plotly.js": "^2.3.0",
     "plotly.js-dist": "^2.3.0",
     "react": "^17.0.2",
@@ -46,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^2.0.1"
   }
 }

@@ -10,30 +10,21 @@ function News() {
 
     const [newsArray,setNewsArray]=useState([]);
     const theme = useSelector(state=>state.theme);
+    const NewsAPI = require('newsapi');
+    const newsapi = new NewsAPI('a0c370ca24664ceaa7a6e01c580b143b');
 
-    useEffect( () => {
-        fetchData().then((Data)=>{
-            setNewsArray(Data)
-        })
+    useEffect( async () => {
+       await newsapi.v2.everything({
+            q: 'cryptocurrency',
+            language: 'en',
+          }).then(response => {
+            setNewsArray(response.articles);
+          })
+          .catch(error=>console.log(error))
     },[])
+    console.log(newsArray)
 
-    const fetchData = async () => {
-        let data = [];
-        let result = await callAPI(`https://cryptopanic.com/api/v1/posts/?auth_token=e11878d3098425272a28c4d3d92989f843dedbd2&kind=news`);
-        console.log(result);
-        for (const item of result.results) {
-            data.push(
-                {
-                    title:item.title,
-                    published_at:item.published_at,
-                    domain:item.source.domain
-                }
-            )
-        }
-        return data;
-    };
 
-    console.log(newsArray);
 
     return (
         <div className={theme?'news-container-night':'news-container-day'}>
@@ -41,10 +32,18 @@ function News() {
         {newsArray.length===0 && <Loader/>}
             {newsArray.map((item,index)=>{
                 return(
-                    <NewsCard title={item.title} domain={item.domain} published_at={item.published_at} key={index}/>
+                    <NewsCard title={item.title} 
+                    domain={item.source.name} 
+                    publishedAt={item.published_at} 
+                    key={index}
+                    image={item.urlToImage}
+                    description={item.description}
+                    url={item.url}
+                    />
                 )
             })}
         </div>
+        
     )
 }
 
