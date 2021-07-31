@@ -4,21 +4,21 @@ import NewsCard from '../NewsCard/NewsCard';
 import { useSelector } from 'react-redux';
 import './News.css'
 import Loader from '../Loader/Loader'
+import axios from 'axios';
 
 
 function News() {
 
     const [newsArray,setNewsArray]=useState([]);
     const theme = useSelector(state=>state.theme);
-    const NewsAPI = require('newsapi');
-    const newsapi = new NewsAPI('a0c370ca24664ceaa7a6e01c580b143b');
+    
+    
 
     useEffect( async () => {
-       await newsapi.v2.everything({
-            q: 'cryptocurrency',
-            language: 'en',
-          }).then(response => {
-            setNewsArray(response.articles);
+       await axios.get('https://newsapi.org/v2/everything?q=Bitcoin&from=2021-07-31&apiKey=a0c370ca24664ceaa7a6e01c580b143b')
+       .then(response => {
+            setNewsArray(response.data.articles);
+            console.log(response);
           })
           .catch(error=>console.log(error))
     },[])
@@ -30,7 +30,7 @@ function News() {
         <div className={theme?'news-container-night':'news-container-day'}>
         <h1>Top News</h1>
         {newsArray.length===0 && <Loader/>}
-            {newsArray.map((item,index)=>{
+            {newsArray && newsArray.map((item,index)=>{
                 return(
                     <NewsCard title={item.title} 
                     domain={item.source.name} 
