@@ -36,7 +36,7 @@ function App() {
                 setCoins(res.data)
             })
             .catch(error => console.log(error));
-    }, [page,curreny])
+    }, [coins,page,curreny])
 
 
 
