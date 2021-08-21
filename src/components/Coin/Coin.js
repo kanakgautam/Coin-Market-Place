@@ -43,11 +43,7 @@ export default function Coin(props) {
 
                 <div className='coin-data'>
                     <p className={`coin-price ${color}` }> {sign} {price.toLocaleString()}</p>
-                    {
-                        priceChange_24 < 0 ? 
-                        (<p className='coin-price-change red'>{priceChange_24}%</p>) 
-                        : (<p className='coin-price-change green'>{priceChange_24}%</p>)
-                    }
+                    <p className='coin-price-change'>{priceChange_24}%</p>
                     <p className='coin-volume'>{volume.toLocaleString()}</p>
                     <p className='coin-marketcap'>
                       {sign} {marketcap.toLocaleString()}

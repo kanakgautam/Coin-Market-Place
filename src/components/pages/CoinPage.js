@@ -31,17 +31,13 @@ function CoinPage() {
 
 
     useEffect(async () => {
-        await axios.get('https://api.coingecko.com/api/v3/coins/' + id)
+        await axios.get(`https://api.coingecko.com/api/v3/coins/${id}`)
             .then(res => {
                 setCoin(res.data)
-                console.log(res.status)
+
             })
             .catch(error => console.log('error'));
-    }, [coin])
-    console.log(coin);
-    
-
-    console.log(coin);
+    }, [])
 
     return (
         <div className={!theme ? 'coin-page-day':'coin-page-night'}>

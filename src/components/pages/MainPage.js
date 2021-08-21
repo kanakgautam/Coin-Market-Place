@@ -19,7 +19,7 @@ function App() {
     const [coins, setCoins] = useState([])
     const [search, setSearch] = useState('');
     const page = useSelector(state=>state.page);
-    const [curreny,setCurrency]= useState('usd');
+    const [currency,setCurrency]= useState('usd');
     const [sign,setSign]=useState('$')
     
 
@@ -31,12 +31,12 @@ function App() {
 
 
     useEffect(() => {
-        axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency='+curreny+'&order=market_cap_desc&per_page=20&page=' + page + '&sparkline=false')
+        axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=20&page=${page}&sparkline=false`)
             .then(res => {
                 setCoins(res.data)
             })
             .catch(error => console.log(error));
-    }, [coins,page,curreny])
+    }, [page,currency])
 
 
 

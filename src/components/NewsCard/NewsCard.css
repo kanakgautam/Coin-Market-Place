@@ -22,13 +22,13 @@
 }
 
 .card-image{
-    height: 200px;
+    height: 80%;
     width: 300px;
 }
 
 .card-para{
-    margin: 20px;
-    padding:10px;
+    margin: 0 20px;
+    padding:0 10px;
     line-height: 30px;
 }
 

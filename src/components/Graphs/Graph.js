@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import callAPI from "../pages/utils";
 import Plot from 'react-plotly.js'
 import './Graph.css'
+import axios from "axios";
 
 function Graph(props) {
     const { id, height, width, size, curr, color } = props;
@@ -10,23 +11,24 @@ function Graph(props) {
     const [xdata, setXData] = useState([]);
     const [ydata, setYData] = useState([]);
 
-    useEffect(() => {
-        fetchData().then((chartData) => {
+    useEffect(async () => {
+        
+        let results = {};
+        await axios.get(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${curr}&days=${interval}`)
+        .then(async (res)=>{
+           results = await res.data 
+        })
+        .then(async()=>{
+            let data = { index: [], price: [] };
+            for (const item of results.prices) {
+                data.index.push(new Date(item[0]));
+                data.price.push(item[1]);
+            }
             setIsLoading(false);
-            setXData(chartData.index);
-            setYData(chartData.price);
-        });
+            setXData(data.index);
+            setYData(data.price);
+        })
     }, [curr,interval]);
-
-    const fetchData = async () => {
-        let data = { index: [], price: [] };
-        let result = await callAPI(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${curr}&days=${interval}`);
-        for (const item of result.prices) {
-            data.index.push(new Date(item[0]));
-            data.price.push(item[1]);
-        }
-        return data;
-    };
 
     const changeInterval = (value) => {
         setInterval(value);
