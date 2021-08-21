@@ -6,7 +6,7 @@ function Header(props) {
     const {handleChange}=props;
     return (
         <div className='coin-search'>
-            <form>
+            <form className='coin-form'>
                 <input type='text' className='coin-input' placeholder='Search' onChange={(event)=>{
                     handleChange(event);
                 }} />

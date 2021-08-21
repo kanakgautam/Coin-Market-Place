@@ -164,3 +164,80 @@
     height: 150px;
     text-align: left;
 }
+
+@media screen and (max-width: 800px) {
+
+    .coin-info{
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        justify-content: center;
+        align-items: center;
+        min-height: 300px;
+    
+    }
+
+    .coin-description{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        margin-right: 0px;
+    }
+
+    .coin-description-symbol{
+        display: none;
+    }
+
+    .coin-info-price{
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+        margin:10px ;
+    }
+
+    .coin-market-value{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+        border-top: solid 0.5px rgb(218, 213, 213) ;
+        border-bottom: solid 0.5px  rgb(218, 213, 213);
+    }
+
+    .box{
+        width: 90%;
+        border-bottom: solid 0.5px rgb(218, 213, 213);
+        border-right: 0px;
+        height: auto;
+        text-align: center;
+    }
+
+    .coin-market-stats{
+        margin-top: 50px;
+        width:100%;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+    }
+
+    .coin-market-stats-wrapper{
+        width: 90%;
+        min-width: 300px;
+        font-size: 12px;
+
+    }
+
+    .coin-market-graph{
+        display: none;
+    }
+
+}

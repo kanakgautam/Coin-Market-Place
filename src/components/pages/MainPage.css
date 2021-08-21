@@ -130,4 +130,53 @@
   text-align: center;
 }
 
+@media screen and (max-width: 760px) {
+
+  .filter-section{
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    justify-content: flex-start;
+  }
+
+  .coin-heading{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width:50%;
+    font-size: 18px;
+    
+  }
+  .coin-data-heading{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 50%;
+  }
+  
+  .coin-data-heading-cell-price{
+    width: 60%;
+    text-align: center;
+  }
+  
+  .coin-data-heading-cell-24h{
+    display: none;
+  }
+  
+  .coin-data-heading-cell-24h-volume{
+    display: none;
+  }
+  
+  .coin-data-heading-cell-mkt-cap{
+    display: none;
+  }
+  .coin-data-heading-cell-total-volume{
+    display: none;
+  }
+  
+  .coin-data-heading-cell-circulating-supply{
+    display: none;
+  }
+}
+
 

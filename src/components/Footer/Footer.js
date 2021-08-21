@@ -15,7 +15,7 @@ function Footer() {
            <button className='btn' onClick={()=>{
                dispatch(decrement(1));
            }}>&lt; prev</button> 
-           <p>....  {page}  .....</p>
+           <p>..  {page}  ..</p>
            <button className='btn' onClick={()=>{
                dispatch(increment(1));
            }}>next &gt;</button>

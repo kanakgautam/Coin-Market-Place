@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import callAPI from "../pages/utils";
 import Plot from 'react-plotly.js'
+import axios from 'axios'
 
 function SmallGraph(props) {
     const {id,height,width,size,color} = props;
@@ -9,26 +10,26 @@ function SmallGraph(props) {
     const [xdata,setXData]=useState([]);
     const [ydata,setYData]=useState([]);
 
-	useEffect(() => {
-		fetchData().then((chartData) => {
-			setIsLoading(false);
-			setLatestPrice(parseFloat(chartData.price[chartData.price.length - 1]).toFixed(2));
-            setXData(chartData.index);
-            setYData(chartData.price);
-		});
-	}, []);
+	useEffect(async () => {
+        
+        let results = {};
+        await axios.get(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=24h&interval=1h`)
+        .then(async (res)=>{
+           results = await res.data 
+        })
+        .then(async()=>{
+            let data = { index: [], price: [] };
+            for (const item of results.prices) {
+                data.index.push(new Date(item[0]));
+                data.price.push(item[1]);
+            }
+            setIsLoading(false);
+            setXData(data.index);
+            setYData(data.price);
+        })
+    }, []);
 
-	const fetchData = async () => {
-		let data = { index: [], price: []};
-		let result = await callAPI('https://api.coingecko.com/api/v3/coins/'+id+'/market_chart?vs_currency=usd&days=24h&interval=1h');
-		for (const item of result.prices) {
-			data.index.push(new Date(item[0]));
-			data.price.push(item[1]);
-		}
-		return data;
-	};
-
-
+	
 	return (
 		<div>
             <Plot

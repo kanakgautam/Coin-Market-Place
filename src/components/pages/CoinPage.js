@@ -1,8 +1,8 @@
-import React, { useState, useEffect,useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import './CoinPage.css'
-import {useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Graph from '../Graphs/Graph'
 import Loader from '../Loader/Loader';
 import Dropdown from '../Dropdown/Dropdown';
@@ -18,12 +18,12 @@ function CoinPage() {
     const location = useLocation();
     const { id, image } = location.state;
     const [coin, setCoin] = useState({});
-    const [curr,setCurr]=useState('usd');
-    const [sign,setSign]=useState('$');
-    const theme = useSelector(state=>state.theme);
+    const [curr, setCurr] = useState('usd');
+    const [sign, setSign] = useState('$');
+    const theme = useSelector(state => state.theme);
 
 
-    const changeCurr = (item,symbol) =>{
+    const changeCurr = (item, symbol) => {
         setCurr(item);
         setSign(symbol);
     }
@@ -40,7 +40,7 @@ function CoinPage() {
     }, [])
 
     return (
-        <div className={!theme ? 'coin-page-day':'coin-page-night'}>
+        <div className={!theme ? 'coin-page-day' : 'coin-page-night'}>
             {!coin.market_data && <Loader />}
             {coin.market_data &&
                 <div className='coin-page-wrapper'>
@@ -50,14 +50,14 @@ function CoinPage() {
                                 <img className='coin-description-img' src={image} />
                                 <p className='coin-description-rank'>Rank {coin.market_data.market_cap_rank}</p>
                                 <div className='coin-description-currency'>
-                                <Dropdown  changeCurrency={changeCurr}/>
+                                    <Dropdown changeCurrency={changeCurr} />
                                 </div>
                             </div>
                             <div className='coin-description-name'>
                                 <h1>{coin.name}</h1>
                             </div>
                             <div>
-                                <p  className='coin-description-symbol'>{coin.symbol}</p>
+                                <p className='coin-description-symbol'>{coin.symbol}</p>
                             </div>
                         </div>
 
@@ -84,28 +84,28 @@ function CoinPage() {
                             <p>Market Cap</p>
                             <p>{sign} {coin.market_data.market_cap[curr].toLocaleString()}</p>
                             {coin.market_data.market_cap_change_percentage_24h > 0 ? (<p className='green'>{coin.market_data.market_cap_change_percentage_24h.toLocaleString()}%</p>) :
-                                    (<p className='red'>{coin.market_data.market_cap_change_percentage_24h.toLocaleString()}%</p>)
-                                }
+                                (<p className='red'>{coin.market_data.market_cap_change_percentage_24h.toLocaleString()}%</p>)
+                            }
                         </div>
-                        {coin.market_data.fully_diluted_valuation >0 && <div className='fully-diluted-market-cap box'>
-                                <p>Fully Diluted market cap</p>
-                                <p>{sign} {coin.market_data.fully_diluted_valuation[curr].toLocaleString()}</p>
+                        {coin.market_data.fully_diluted_valuation > 0 && <div className='fully-diluted-market-cap box'>
+                            <p>Fully Diluted market cap</p>
+                            <p>{sign} {coin.market_data.fully_diluted_valuation[curr].toLocaleString()}</p>
                         </div>}
                         {coin.market_data.total_volume && <div className='volume box'>
-                                <p>Volume</p>
-                                <p>{sign} {coin.market_data.total_volume[curr].toLocaleString()}</p>
+                            <p>Volume</p>
+                            <p>{sign} {coin.market_data.total_volume[curr].toLocaleString()}</p>
                         </div>}
                         {coin.market_data.circulating_supply && <div className='circulating-supply'>
-                                <p>Circulating Supply</p>
-                                <p>{sign} {coin.market_data.circulating_supply.toLocaleString()} {coin.symbol}</p>
+                            <p>Circulating Supply</p>
+                            <p>{sign} {coin.market_data.circulating_supply.toLocaleString()} {coin.symbol}</p>
                         </div>}
                     </div>
                     <div className='coin-market-stats'>
-                    <div>
-                    <div className='coin-market-graph'>
-                                <Graph  id={id} height={600} width={800} size={18} curr={curr}  color={coin.market_data.price_change_percentage_7d > 0 ?'#11d811':'red'}/>
-                    </div>
-                    </div>
+                        <div>
+                            <div className='coin-market-graph'>
+                                <Graph id={id} height={600} width={800} size={18} curr={curr} color={coin.market_data.price_change_percentage_7d > 0 ? '#11d811' : 'red'} />
+                            </div>
+                        </div>
                         <div className='coin-market-stats-wrapper'>
                             <h1 className='coin-market-stats-heading'>{coin.symbol.toUpperCase()} Price Statistics</h1>
                             <div className='coin-market-stat-row'>

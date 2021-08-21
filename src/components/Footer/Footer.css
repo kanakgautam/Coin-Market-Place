@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    min-width:500px;
     margin: 30px;
 }
 
@@ -11,5 +10,24 @@
     background-color: transparent;
     border: 1px solid #d7d7d7;
     border-radius: 5px;
+    margin: 10px;
     color: inherit;
+}
+@media screen and (max-width:760px){
+    .btn-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width:90%;
+        margin: 30px;
+    }
+    
+    .btn{
+        padding: 5px;
+        margin: 5px;
+        background-color: transparent;
+        border: 1px solid #d7d7d7;
+        border-radius: 5px;
+        color: inherit;
+    }
 }

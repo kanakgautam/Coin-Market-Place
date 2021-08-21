@@ -23,11 +23,11 @@ function Navbar() {
                         Exchange
                     </Link>
                 </li>
-                <li className='nav-item'>
+                {/* <li className='nav-item'>
                     <Link to='/news' className='nav-links'>
                         News
                     </Link>
-                </li>
+                </li> */}
             </ul>
         </nav>
     )
